@@ -24,11 +24,11 @@
                     Account
                 </button>
                 <div class="dropdown-menu" aria-labelledby="sessionDropdown">
-                    <a class="dropdown-item" href="#" data-session="session1">Session 1</a>
-                    <a class="dropdown-item" href="#" data-session="session2">Session 2</a>
-                    <a class="dropdown-item" href="#" data-session="session3">Session 3</a>
+                    <a class="dropdown-item" href="#" data-session="Profile">Profile</a>
+                    <a class="dropdown-item" href="#" data-session="Accesibility">Accesibility</a>
+                    <a class="dropdown-item" href="#" data-session="Privacy and Data">Privacy and Data</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#" id="logout">Logout</a>
+                    <a class="dropdown-item" href="#" id="logout">Log Out</a>
                 </div>
             </div>
         </div>
@@ -36,17 +36,20 @@
             <!-- Publicaciones en grid -->
             <div class="col-md-4 col-sm-6 feed-card">
                 <div class="card">
-                    <img src="./img/corgi.jpg" class="card-img-top" alt="...">
+                    <img src="./img/corgi.jpg" class="card-img-top" alt="..." data-title="Título del Corgi"
+                        data-description="Descripción del Corgi">
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 feed-card">
                 <div class="card">
-                    <img src="./img/doberman.jpg" class="card-img-top" alt="...">
+                    <img src="./img/doberman.jpg" class="card-img-top" alt="..." data-title="Título del Doberman"
+                        data-description="Descripción del Doberman">
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 feed-card">
                 <div class="card">
-                    <img src="./img/husky.jpg" class="card-img-top" alt="...">
+                    <img src="./img/husky.jpg" class="card-img-top" alt="..." data-title="Título del Husky"
+                        data-description="Descripción del Husky">
                 </div>
             </div>
         </div>
@@ -76,9 +79,12 @@
                             <label for="post-description">Description</label>
                             <textarea class="form-control" id="post-description" rows="3" required></textarea>
                         </div>
+
                         <div class="form-group">
-                            <label for="post-image-url">Image URL</label>
-                            <input type="url" class="form-control" id="post-image-url" required>
+
+                            <input type="file" class="form-control-file" id="post-image-file" style="display: none;">
+                            <button type="button" class="btn btn-secondary" id="upload-image-btn"><i
+                                    class="bi bi-camera"></i></button>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
@@ -87,10 +93,12 @@
         </div>
     </div>
 
+    <!-- Scripts de Bootstrap 4.5.2 (jQuery y Popper.js) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="scripts.js"></script>
+
 </body>
 
 </html>

@@ -1,21 +1,33 @@
 $(document).ready(function () {
+    // Manejar la vista de cuadrícula
     $('#grid-view-btn').click(function () {
         $('#instagram-feed').show();
         $('#single-post-view').hide();
     });
 
+    // Manejar la vista de una sola publicación
     $('#single-view-btn').click(function () {
-        $('#instagram-feed').hide();
-        var singlePostContent = `
-            <div class="card">
-                <img src="./img/corgi.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Título de la Publicación</h5>
-                    <p class="card-text">Descripción detallada de la publicación.</p>
+        var posts = $('#instagram-feed .feed-card');
+        var singlePostContent = '';
+
+        posts.each(function () {
+            var imgSrc = $(this).find('img').attr('src');
+            var title = $(this).find('img').data('title');
+            var description = $(this).find('img').data('description');
+
+            singlePostContent += `
+                <div class="card mb-3">
+                    <img src="${imgSrc}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">${title}</h5>
+                        <p class="card-text">${description}</p>
+                    </div>
                 </div>
-            </div>
-        `;
+            `;
+        });
+
         $('#single-post-view').html(singlePostContent);
+        $('#instagram-feed').hide();
         $('#single-post-view').show();
     });
 
@@ -31,22 +43,39 @@ $(document).ready(function () {
         var title = $('#post-title').val();
         var description = $('#post-description').val();
         var imageUrl = $('#post-image-url').val();
+        var imageFile = $('#post-image-file')[0].files[0];
 
-        var newPostContent = `
-            <div class="col-md-4 col-sm-6 feed-card">
-                <div class="card">
-                    <img src="${imageUrl}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">${title}</h5>
-                        <p class="card-text">${description}</p>
+        if (imageFile) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var newPostContent = `
+                    <div class="col-md-4 col-sm-6 feed-card">
+                        <div class="card">
+                            <img src="${e.target.result}" class="card-img-top" alt="..." data-title="${title}" data-description="${description}">
+                        </div>
+                    </div>
+                `;
+                $('#instagram-feed').append(newPostContent);
+            }
+            reader.readAsDataURL(imageFile);
+        } else if (imageUrl) {
+            var newPostContent = `
+                <div class="col-md-4 col-sm-6 feed-card">
+                    <div class="card">
+                        <img src="${imageUrl}" class="card-img-top" alt="..." data-title="${title}" data-description="${description}">
                     </div>
                 </div>
-            </div>
-        `;
+            `;
+            $('#instagram-feed').append(newPostContent);
+        }
 
-        $('#instagram-feed').append(newPostContent);
         $('#newPostModal').modal('hide');
         $('#new-post-form')[0].reset();
+    });
+
+    // Mostrar input de tipo file al hacer clic en el ícono de cámara
+    $('#upload-image-btn').click(function () {
+        $('#post-image-file').click();
     });
 
     // Manejar el cambio de sesión
