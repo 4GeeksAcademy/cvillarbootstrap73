@@ -12,43 +12,57 @@
 </head>
 
 <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <i class="bi bi-instagram"></i> Instagram
+        </a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <button class="btn btn-primary" id="new-post-btn">Crear Post</button>
+                </li>
+                <li class="nav-item ml-2">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="sessionDropdown"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Account
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="sessionDropdown">
+                            <a class="dropdown-item" href="#" data-session="Profile">Profile</a>
+                            <a class="dropdown-item" href="#" data-session="Accesibility">Accesibility</a>
+                            <a class="dropdown-item" href="#" data-session="Privacy and Data">Privacy and Data</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" id="logout">Log Out</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="container mt-5">
-        <div class="btn-container">
+        <div class="btn-container mb-4">
             <button class="icon-btn" id="grid-view-btn"><i class="bi bi-grid-3x3-gap-fill"></i></button>
             <button class="btn btn-secondary" id="single-view-btn">Single Post View</button>
-            <button class="btn btn-primary" id="new-post-btn">New Post</button>
-            <!-- Dropdown para cambiar la sesión o cerrar sesión -->
-            <div class="dropdown ml-2">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="sessionDropdown"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Account
-                </button>
-                <div class="dropdown-menu" aria-labelledby="sessionDropdown">
-                    <a class="dropdown-item" href="#" data-session="Profile">Profile</a>
-                    <a class="dropdown-item" href="#" data-session="Accesibility">Accesibility</a>
-                    <a class="dropdown-item" href="#" data-session="Privacy and Data">Privacy and Data</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#" id="logout">Log Out</a>
-                </div>
-            </div>
         </div>
         <div class="row" id="instagram-feed">
             <!-- Publicaciones en grid -->
             <div class="col-md-4 col-sm-6 feed-card">
                 <div class="card">
-                    <img src="./img/corgi.jpg" class="card-img-top" alt="..." data-title="Título del Corgi"
+                    <img src="./img/corgi.jpg" class="card-img-center" alt="..." data-title="Título del Corgi"
                         data-description="Descripción del Corgi">
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 feed-card">
                 <div class="card">
-                    <img src="./img/doberman.jpg" class="card-img-top" alt="..." data-title="Título del Doberman"
+                    <img src="./img/doberman.jpg" class="card-img-center" alt="..." data-title="Título del Doberman"
                         data-description="Descripción del Doberman">
                 </div>
             </div>
             <div class="col-md-4 col-sm-6 feed-card">
                 <div class="card">
-                    <img src="./img/husky.jpg" class="card-img-top" alt="..." data-title="Título del Husky"
+                    <img src="./img/husky.jpg" class="card-img-center" alt="..." data-title="Título del Husky"
                         data-description="Descripción del Husky">
                 </div>
             </div>
@@ -64,7 +78,9 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="newPostModalLabel">New Post</h5>
+                    <h5 class="modal-title" id="newPostModalLabel">
+                        <i class="bi bi-instagram"></i> Instagram
+                    </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -79,9 +95,12 @@
                             <label for="post-description">Description</label>
                             <textarea class="form-control" id="post-description" rows="3" required></textarea>
                         </div>
-
                         <div class="form-group">
-
+                            <label for="post-image-url">Image URL</label>
+                            <input type="url" class="form-control" id="post-image-url">
+                        </div>
+                        <div class="form-group">
+                            <label for="post-image-file">Upload Image</label>
                             <input type="file" class="form-control-file" id="post-image-file" style="display: none;">
                             <button type="button" class="btn btn-secondary" id="upload-image-btn"><i
                                     class="bi bi-camera"></i></button>

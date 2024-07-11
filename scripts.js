@@ -7,26 +7,25 @@ $(document).ready(function () {
 
     // Manejar la vista de una sola publicación
     $('#single-view-btn').click(function () {
-        var posts = $('#instagram-feed .feed-card');
-        var singlePostContent = '';
-
-        posts.each(function () {
+        var allPostsContent = '';
+        $('#instagram-feed .feed-card').each(function () {
             var imgSrc = $(this).find('img').attr('src');
             var title = $(this).find('img').data('title');
             var description = $(this).find('img').data('description');
-
-            singlePostContent += `
-                <div class="card mb-3">
-                    <img src="${imgSrc}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">${title}</h5>
-                        <p class="card-text">${description}</p>
+            var postContent = `
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="${imgSrc}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">${title}</h5>
+                            <p class="card-text">${description}</p>
+                        </div>
                     </div>
                 </div>
             `;
+            allPostsContent += postContent;
         });
-
-        $('#single-post-view').html(singlePostContent);
+        $('#single-post-view').html(allPostsContent);
         $('#instagram-feed').hide();
         $('#single-post-view').show();
     });
@@ -49,7 +48,7 @@ $(document).ready(function () {
             var reader = new FileReader();
             reader.onload = function (e) {
                 var newPostContent = `
-                    <div class="col-md-4 col-sm-6 feed-card">
+                    <div class="col-md-4 col-sm-6 mb-4">
                         <div class="card">
                             <img src="${e.target.result}" class="card-img-top" alt="..." data-title="${title}" data-description="${description}">
                         </div>
@@ -60,7 +59,7 @@ $(document).ready(function () {
             reader.readAsDataURL(imageFile);
         } else if (imageUrl) {
             var newPostContent = `
-                <div class="col-md-4 col-sm-6 feed-card">
+                <div class="col-md-4 col-sm-6 mb-4">
                     <div class="card">
                         <img src="${imageUrl}" class="card-img-top" alt="..." data-title="${title}" data-description="${description}">
                     </div>
