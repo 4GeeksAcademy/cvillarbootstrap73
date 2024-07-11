@@ -1,0 +1,33 @@
+.feed-card img {
+    width: 100%; /* Ancho fijo para todas las imágenes */
+    height: 250px; /* Mantiene la proporción de la imagen */
+    object-fit: cover; /* Hace que la imagen cubra el contenedor sin distorsionarse */
+}
+
+.feed-card {
+    margin-bottom: 30px;
+}
+
+.single-post {
+    display: none;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    padding: 0;
+    margin-right: 10px;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.btn-primary {
+    margin-left: 10px;
+}
