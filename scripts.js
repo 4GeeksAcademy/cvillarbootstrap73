@@ -7,28 +7,31 @@ $(document).ready(function () {
 
     // Manejar la vista de una sola publicación
     $('#single-view-btn').click(function () {
+        updateSinglePostView();
+        $('#instagram-feed').hide();
+        $('#single-post-view').show();
+    });
+
+    // Función para actualizar la vista de una sola publicación
+    function updateSinglePostView() {
         var allPostsContent = '';
         $('#instagram-feed .feed-card').each(function () {
             var imgSrc = $(this).find('img').attr('src');
             var title = $(this).find('img').data('title');
             var description = $(this).find('img').data('description');
             var postContent = `
-                <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <img src="${imgSrc}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">${title}</h5>
-                            <p class="card-text">${description}</p>
-                        </div>
+                <div class="card">
+                    <img src="${imgSrc}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">${title}</h5>
+                        <p class="card-text">${description}</p>
                     </div>
                 </div>
             `;
             allPostsContent += postContent;
         });
         $('#single-post-view').html(allPostsContent);
-        $('#instagram-feed').hide();
-        $('#single-post-view').show();
-    });
+    }
 
     // Mostrar modal para nuevo post
     $('#new-post-btn').click(function () {
@@ -48,24 +51,26 @@ $(document).ready(function () {
             var reader = new FileReader();
             reader.onload = function (e) {
                 var newPostContent = `
-                    <div class="col-md-4 col-sm-6 mb-4">
+                    <div class="col-md-4 col-sm-6 mb-4 feed-card">
                         <div class="card">
                             <img src="${e.target.result}" class="card-img-top" alt="..." data-title="${title}" data-description="${description}">
                         </div>
                     </div>
                 `;
                 $('#instagram-feed').append(newPostContent);
+                updateSinglePostView();
             }
             reader.readAsDataURL(imageFile);
         } else if (imageUrl) {
             var newPostContent = `
-                <div class="col-md-4 col-sm-6 mb-4">
+                <div class="col-md-4 col-sm-6 mb-4 feed-card">
                     <div class="card">
                         <img src="${imageUrl}" class="card-img-top" alt="..." data-title="${title}" data-description="${description}">
                     </div>
                 </div>
             `;
             $('#instagram-feed').append(newPostContent);
+            updateSinglePostView();
         }
 
         $('#newPostModal').modal('hide');

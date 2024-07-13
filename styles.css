@@ -7,16 +7,28 @@
 .feed-card {
     margin-bottom: 30px;
 }
+
 .single-post {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar las tarjetas horizontalmente */
     text-align: center; /* Centrar el contenido horizontalmente */
 }
 
 .single-post img {
     display: block; /* Asegura que las imágenes se muestren una debajo de otra */
     margin: 0 auto 10px; /* Centrar horizontalmente y agregar espacio inferior */
-    width: 300px; /* Ancho fijo para las imágenes en la vista single post */
+    width: 100%; /* Ancho completo */
+    max-width: 300px; /* Ancho máximo */
     height: auto; /* Altura automática para mantener la proporción */
     object-fit: cover; /* Cubrir el contenedor manteniendo la relación de aspecto */
+}
+
+.single-post .card {
+    margin-bottom: 20px; /* Espacio entre cada tarjeta de post */
+    text-align: left; /* Alinear el texto y la descripción a la izquierda */
+    width: 100%; /* Ancho completo */
+    max-width: 300px; /* Ancho máximo */
 }
 
 .icon-btn {
@@ -39,15 +51,30 @@
     margin-left: 10px;
 }
 
-.single-post .card {
-    margin-bottom: 20px; /* Espacio entre cada tarjeta de post */
-    text-align: left; /* Alinear el texto y la descripción a la izquierda */
-}
 .dropdown-item#logout {
     color: red !important;
 }
+
 @media (max-width: 768px) {
     .single-post img {
         width: 100%; /* Ancho completo en dispositivos móviles */
+    }
+
+    .single-post .card {
+        width: 100%; /* Ancho completo para las tarjetas en móviles */
+    }
+
+    .navbar-nav {
+        width: 100%; /* Asegurar que la barra de navegación ocupe el ancho completo */
+    }
+
+    .navbar-nav .nav-item {
+        width: 100%; /* Asegurar que cada ítem ocupe el ancho completo */
+        text-align: center; /* Centrar el contenido de cada ítem */
+        margin-bottom: 10px; /* Añadir espacio inferior entre ítems */
+    }
+
+    .navbar-nav .btn {
+        width: auto; /* Ajustar el ancho de los botones */
     }
 }
